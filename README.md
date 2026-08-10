@@ -2,7 +2,7 @@
 라이브 웹 프레젠테이션 (Presentation Link)
 프로젝트에 대한 제안서 및 실시간 인터랙션 기술 발표 자료는 아래 링크에서 확인하실 수 있습니다.
 
-👉 **[https://keyboardkids.github.io/Shape.of.Sound/](https://keyboardkids.github.io/Shape.of.Sound/))**
+👉 **[https://keyboardkids.github.io/Shape.of.Sound/](https://keyboardkids.github.io/Shape.of.Sound/)**
 
 ---
 
