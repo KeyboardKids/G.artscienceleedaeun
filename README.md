@@ -1,4 +1,4 @@
-<img width="1536" height="650" alt="Shape" src="https://github.com/user-attachments/assets/f28ba17f-cd9c-48b7-b845-8b22d29a4f46" />
+<img width="830" height="650" alt="Shape" src="https://github.com/user-attachments/assets/f28ba17f-cd9c-48b7-b845-8b22d29a4f46" />
 목소리의 형상 (성악, 플루트,기술이 금강이 되는 음악)
 라이브 웹 프레젠테이션 (Presentation Link)
 ##음악과 미디어 아트 공연 제안서 바로가기([https://github.io/Shape.of.Sound](https://github.io/Shape.of.Sound)/)**
