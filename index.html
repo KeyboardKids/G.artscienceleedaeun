@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>목소리의 형상 - 공연 프로젝트 제안서</title>
+    <title>목소리의 형상 - 인터랙티브 테크아트 공연 제안서</title>
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-        
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Pretendard', sans-serif;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
         }
 
         body {
-            background-color: #0d1117;
-            color: #e6edf3;
+            background-color: #0f172a;
+            color: #f8fafc;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -25,18 +25,25 @@
             padding: 20px;
         }
 
+        .slide-wrapper {
+            width: 1000px;
+            max-width: 95vw;
+            position: relative;
+        }
+
         .slide-container {
-            width: 900px;
-            height: 506px; /* 16:9 비율 */
-            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
-            border: 1px solid #30363d;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            padding: 40px;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            padding: 36px 40px;
             display: none;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
+            overflow: hidden;
         }
 
         .slide-container.active {
@@ -44,53 +51,182 @@
         }
 
         .header {
-            border-bottom: 2px solid #238636;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid #0284c7;
             padding-bottom: 12px;
+            margin-bottom: 16px;
         }
 
-        .header h3 {
-            font-size: 14px;
-            color: #2ea043;
+        .header-title h3 {
+            font-size: 13px;
+            color: #38bdf8;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            font-weight: 700;
         }
 
-        .header h1 {
-            font-size: 26px;
+        .header-title h1 {
+            font-size: 24px;
             color: #ffffff;
-            margin-top: 4px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .header-badge {
+            background: rgba(2, 132, 199, 0.2);
+            border: 1px solid #0284c7;
+            color: #38bdf8;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
         }
 
         .content {
             flex-grow: 1;
-            margin-top: 24px;
-            font-size: 16px;
-            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
+        /* Title Slide */
+        .title-slide {
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #1e293b 0%, #090d16 100%);
+        }
+
+        .title-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #0284c7, #0d9488);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .title-slide h1 {
+            font-size: 42px;
+            color: #f8fafc;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #7dd3fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .title-slide h2 {
+            font-size: 20px;
+            color: #94a3b8;
+            font-weight: 400;
+            margin-bottom: 36px;
+        }
+
+        .contact-box {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid #334155;
+            backdrop-filter: blur(10px);
+            padding: 20px 32px;
+            border-radius: 12px;
+            display: flex;
+            gap: 24px;
+            text-align: left;
+        }
+
+        .contact-item {
+            font-size: 13px;
+        }
+
+        .contact-item label {
+            display: block;
+            color: #64748b;
+            font-size: 11px;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .contact-item span {
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+
+        /* Image Slide Container */
+        .img-slide-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: 100%;
+        }
+
+        .img-wrapper {
+            width: 100%;
+            flex: 1;
+            background: #0f172a;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Grid Layouts */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
-            margin-top: 10px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
 
         .card {
-            background: #21262d;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 16px;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .card h4 {
-            color: #58a6ff;
-            margin-bottom: 8px;
+            color: #38bdf8;
             font-size: 18px;
+            font-weight: 700;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 8px;
+            margin-bottom: 4px;
         }
 
-        .card p, .card li {
+        .card-tag {
+            font-size: 12px;
+            color: #0d9488;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .card p {
             font-size: 14px;
-            color: #c9d1d9;
+            color: #cbd5e1;
+            line-height: 1.6;
         }
 
         .card ul {
@@ -99,208 +235,321 @@
         }
 
         .card li {
-            margin-bottom: 6px;
+            font-size: 13.5px;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .card li strong {
+            color: #7dd3fc;
+            min-width: 90px;
+        }
+
+        /* Table Style */
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .tech-table th {
+            background: #1e293b;
+            color: #38bdf8;
+            text-align: left;
+            padding: 10px 14px;
+            border-bottom: 2px solid #334155;
+            font-weight: 700;
+        }
+
+        .tech-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #334155;
+            color: #e2e8f0;
+        }
+
+        .tech-table tr:hover {
+            background: rgba(51, 65, 85, 0.3);
         }
 
         .footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid #21262d;
+            border-top: 1px solid #1e293b;
             padding-top: 12px;
             font-size: 12px;
-            color: #8b949e;
+            color: #64748b;
         }
 
+        /* Controls */
         .controls {
             margin-top: 20px;
             display: flex;
             gap: 12px;
+            justify-content: center;
         }
 
         button {
-            background-color: #238636;
+            background-color: #0284c7;
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
+            padding: 10px 20px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
         }
 
         button:hover {
-            background-color: #2ea043;
+            background-color: #0369a1;
+            transform: translateY(-1px);
         }
 
-        .title-slide {
-            text-align: center;
-            justify-content: center;
-            align-items: center;
+        button.btn-print {
+            background-color: #0d9488;
         }
 
-        .title-slide h1 {
-            font-size: 36px;
-            color: #58a6ff;
-            margin-bottom: 12px;
-        }
-
-        .title-slide h2 {
-            font-size: 20px;
-            color: #8b949e;
-            font-weight: 400;
-            margin-bottom: 30px;
-        }
-
-        .contact-box {
-            background: #161b22;
-            padding: 16px 24px;
-            border-radius: 8px;
-            border: 1px solid #30363d;
-            display: inline-block;
-            text-align: left;
-            font-size: 14px;
+        button.btn-print:hover {
+            background-color: #0f766e;
         }
 
         @media print {
             body { background: none; padding: 0; }
             .controls { display: none; }
-            .slide-container { 
-                display: flex !important; 
-                page-break-after: always; 
+            .slide-wrapper { width: 100%; max-width: none; }
+            .slide-container {
+                display: flex !important;
+                page-break-after: always;
                 box-shadow: none;
-                border: 1px solid #ccc;
-                color: #000;
-                background: #fff;
-                margin-bottom: 20px;
+                border: none;
+                background: #0f172a !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
-            .card { background: #f6f8fa; border-color: #d0d7de; }
-            .card h4 { color: #0969da; }
-            .card p, .card li { color: #24292f; }
-            .header h1 { color: #24292f; }
-            .title-slide h1 { color: #0969da; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Slide 1: 표지 -->
-    <div class="slide-container active title-slide">
-        <h1>목소리의 형상: 국악과 자연의 흐름</h1>
-        <h2>성악, 가야금, 플루트, 그리고 기술이 만나는 융복합 테크아트 공연</h2>
-        <div class="contact-box">
-            <p><strong>제안자:</strong> 시스템 / 파이프라인 개발자</p>
-            <p><strong>이메일:</strong> leun95@naver.com</p>
-            <p><strong>연락처:</strong> 010-2405-6340</p>
-        </div>
-    </div>
+    <div class="slide-wrapper">
 
-    <!-- Slide 2: 기획 의도 -->
-    <div class="slide-container">
-        <div class="header">
-            <h3>01. Overview</h3>
-            <h1>기획 의도 및 공연 서사</h1>
-        </div>
-        <div class="content grid-3">
-            <div class="card">
-                <h4>1장: 소리의 탄생</h4>
-                <p><strong>Static → Energy</strong></p>
-                <br>
-                <p>작은 소리가 물의 입자가 되어 흐름을 형성합니다. 세 연주자의 소리가 각기 다른 온도의 빗줄기가 되어 무대 바닥에 쌓입니다.</p>
-            </div>
-            <div class="card">
-                <h4>2장: 두 흐름의 대화</h4>
-                <p><strong>Voice → Avatar</strong></p>
-                <br>
-                <p>소리가 교차하고 얽히며 징검다리를 거칩니다. 연주 속도(BPM)와 음높이(Pitch)에 따라 빗줄기 밀도와 파동이 실시간 변화합니다.</p>
-            </div>
-            <div class="card">
-                <h4>3장: 공존 (금강)</h4>
-                <p><strong>Harmony</strong></p>
-                <br>
-                <p>비가 그치고 무대 전체가 웅장한 금강 풍경으로 전환됩니다. 강물이 버드나무 사이를 지나 바다로 향하는 장엄한 완성을 그립니다.</p>
+        <!-- Slide 1: 표지 -->
+        <div class="slide-container active title-slide">
+            <div class="title-badge">인터랙티브 테크아트 공연 기획안</div>
+            <h1>목소리의 형상</h1>
+            <h2>국악과 클래식, 자연의 흐름이 기술로 피어나는 공감각적 무대</h2>
+            <div class="contact-box">
+                <div class="contact-item">
+                    <label>Developer / Pipeline</label>
+                    <span>시스템 및 엔지니어링</span>
+                </div>
+                <div class="contact-item">
+                    <label>Email</label>
+                    <span>leun95@naver.com</span>
+                </div>
+                <div class="contact-item">
+                    <label>Contact</label>
+                    <span>010-2405-6340</span>
+                </div>
             </div>
         </div>
-        <div class="footer">
-            <span>TechArt Stage Lab - TESS LAB</span>
-            <span>1 / 3</span>
-        </div>
-    </div>
 
-    <!-- Slide 3: 기술 및 파이프라인 -->
-    <div class="slide-container">
-        <div class="header">
-            <h3>02. Technology</h3>
-            <h1>실시간 오디오 반응형 인터랙션 기술</h1>
-        </div>
-        <div class="content grid-3">
-            <div class="card">
-                <h4>성악 (Voice)</h4>
-                <ul>
-                    <li>• <strong>Pitch:</strong> 빗방울 생성 높이</li>
-                    <li>• <strong>RMS:</strong> 빗방울 크기 제어</li>
-                    <li>• <strong>Vibrato:</strong> 물결의 떨림/파동</li>
-                </ul>
+        <!-- Slide 2: 인포그래픽 뷰 (Shape.png 보드) -->
+        <div class="slide-container">
+            <div class="header">
+                <div class="header-title">
+                    <h3>01. Overview Architecture</h3>
+                    <h1>공연 연출 & 시스템 종합 보드</h1>
+                </div>
+                <div class="header-badge">Shape of Sound Visual Board</div>
             </div>
-            <div class="card">
-                <h4>가야금 (Gayageum)</h4>
-                <ul>
-                    <li>• <strong>Onset:</strong> 빗방울 발생 빈도</li>
-                    <li>• <strong>RMS:</strong> 폭우/가랑비 강우량</li>
-                    <li>• <strong>Spectrum:</strong> 물결 발생 위치</li>
-                </ul>
+            <div class="content img-slide-container">
+                <div class="img-wrapper">
+                    <!-- Shape.png 이미지 자동 연결 -->
+                    <img src="Shape.png" alt="목소리의 형상 종합 연출 보드" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/KeyboardKids/Shape.of.Sound/main/Shape.png';">
+                </div>
             </div>
-            <div class="card">
-                <h4>플루트 (Flute)</h4>
-                <ul>
-                    <li>• <strong>Breath:</strong> 안개 밀도 연동</li>
-                    <li>• <strong>Pitch:</strong> 바람 이동 방향</li>
-                    <li>• <strong>Sustain:</strong> 물결 지속 시간</li>
-                </ul>
+            <div class="footer">
+                <span>Shape of Sound Board / Interactive Performance Concept</span>
+                <span>1 / 5</span>
             </div>
         </div>
-        <div class="footer">
-            <span>Ubuntu & Python Pipeline / TouchDesigner Physics</span>
-            <span>2 / 3</span>
-        </div>
-    </div>
 
-    <!-- Slide 4: 팀 구성 및 역할 -->
-    <div class="slide-container">
-        <div class="header">
-            <h3>03. Team & Synergy</h3>
-            <h1>팀 구성 및 역할 분담</h1>
-        </div>
-        <div class="content grid-3">
-            <div class="card">
-                <h4>소리 예술가</h4>
-                <p><strong>성악 · 가야금 · 플루트</strong></p>
-                <br>
-                <p>서사를 이끌어가는 목소리와 악기 연주로 무대 생명력 부여. 기술과 호흡하는 실시간 가창/연주 수행.</p>
+        <!-- Slide 3: 공연 서사 (3장 구조) -->
+        <div class="slide-container">
+            <div class="header">
+                <div class="header-title">
+                    <h3>02. Artistic Storyline</h3>
+                    <h1>3장 구성의 예술적 서사</h1>
+                </div>
+                <div class="header-badge">공연 시놉시스</div>
             </div>
-            <div class="card">
-                <h4>공연 기획자</h4>
-                <p><strong>총괄 연출 & 운영</strong></p>
-                <br>
-                <p>공연 연출, 스토리라인 조율, 큐(Cue) 사인을 통한 무대 제어, 마케팅 및 대관 운영 전반 담당.</p>
+            <div class="content grid-3">
+                <div class="card">
+                    <div class="card-tag">Static → Energy</div>
+                    <h4>1장. 소리의 탄생</h4>
+                    <p>작은 소리가 물의 입자가 되어 유등천의 흐름을 그려냅니다. 두 연주자의 소리가 각기 다른 색깔과 온도의 빗줄기가 되어 무대 바닥에 쌓여갑니다.</p>
+                </div>
+                <div class="card">
+                    <div class="card-tag">Voice → Avatar</div>
+                    <h4>2장. 두 흐름의 대화</h4>
+                    <p>두 소리가 만나 갑천과 유등천이 교차하듯 위엄 있게 얽힙니다. 가야금의 속주(Onset)와 성악/플루트 음높이(Pitch)에 따라 빗줄기 밀도와 파동이 고조됩니다.</p>
+                </div>
+                <div class="card">
+                    <div class="card-tag">Harmony & Completion</div>
+                    <h4>3장. 공존 (금강)</h4>
+                    <p>하나의 울림이 버드나무를 흔들고 온 풍경이 숨을 쉽니다. 비가 그치고 빗물이 모여 만든 거대한 강물이 바다를 향해 흘러가는 장엄한 완성을 이룹니다.</p>
+                </div>
             </div>
-            <div class="card">
-                <h4>파이프라인 개발자</h4>
-                <p><strong>백엔드 & Web UI (본인)</strong></p>
-                <br>
-                <p>Ubuntu 기반 실시간 오디오 분석 파이프라인 구축. 백스테이지 태블릿 제어용 Web Operator UI 개발.</p>
+            <div class="footer">
+                <span>성악 · 가야금 · 플루트 · TouchDesigner</span>
+                <span>2 / 5</span>
             </div>
         </div>
-        <div class="footer">
-            <span>Contact: leun95@naver.com / 010-2405-6340</span>
-            <span>3 / 3</span>
+
+        <!-- Slide 4: 시스템 아키텍처 및 파이프라인 -->
+        <div class="slide-container">
+            <div class="header">
+                <div class="header-title">
+                    <h3>03. System & Pipeline</h3>
+                    <h1>실시간 오디오 반응형 파이프라인</h1>
+                </div>
+                <div class="header-badge">Ubuntu & Python Core</div>
+            </div>
+            <div class="content grid-2">
+                <div class="card">
+                    <h4>시스템 데이터 흐름</h4>
+                    <ul>
+                        <li><strong>Audio Source:</strong> 가야금 / 성악 / 플루트 (2ch 오디오 인터페이스)</li>
+                        <li><strong>Python Server:</strong> FastAPI 기반 실시간 분석 (Volume, Pitch, Rhythm, Spectral)</li>
+                        <li><strong>Protocol:</strong> OSC (UDP) → TouchDesigner, WebSocket → Operator UI</li>
+                        <li><strong>Control UI:</strong> 백스테이지 태블릿(iPad) Operator Web Panel</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>핵심 기술 스택</h4>
+                    <ul>
+                        <li><strong>Audio Engine:</strong> PyAudio, sounddevice, librosa</li>
+                        <li><strong>Backend:</strong> Python 3.11, FastAPI, Uvicorn, python-osc</li>
+                        <li><strong>Visualization:</strong> TouchDesigner, Blender (Physics Simulation)</li>
+                        <li><strong>Frontend UI:</strong> HTML5 / CSS3 / JS (iPad Safari 최적화)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer">
+                <span>Zero-Latency Real-Time Audio Feature Extraction</span>
+                <span>3 / 5</span>
+            </div>
         </div>
+
+        <!-- Slide 5: 오디오 분석 → 비주얼 매핑 -->
+        <div class="slide-container">
+            <div class="header">
+                <div class="header-title">
+                    <h3>04. Visual Mapping Table</h3>
+                    <h1>실시간 데이터 → 비주얼 파라미터 매핑</h1>
+                </div>
+                <div class="header-badge">Data Interaction</div>
+            </div>
+            <div class="content">
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th>추출 데이터</th>
+                            <th>물 (Flow)</th>
+                            <th>입자 (Particle)</th>
+                            <th>버드나무 (Willow)</th>
+                            <th>빛 (Light)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Volume (RMS)</strong></td>
+                            <td>물결의 크기</td>
+                            <td>입자 발생량</td>
+                            <td>가지 흔들림 강도</td>
+                            <td>빛 밝기</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pitch (Hz)</strong></td>
+                            <td>물결의 높이</td>
+                            <td>입자 상승 높이</td>
+                            <td>흔들림 방향 (위/아래)</td>
+                            <td>빛 색상 (색온도)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Spectral Centroid</strong></td>
+                            <td>물결의 복잡도</td>
+                            <td>입자 크기</td>
+                            <td>잎사귀 밀도 표현</td>
+                            <td>빛의 선명도</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rhythm (Onset)</strong></td>
+                            <td>물결 흐름 속도</td>
+                            <td>입자 폭발 타이밍</td>
+                            <td>흔들림 주기</td>
+                            <td>빛 반응 타이밍</td>
+                        </tr>
+                        <tr>
+                            <td><strong>두 연주자 관계</strong></td>
+                            <td>두 물줄기 거리/합류</td>
+                            <td>입자 상호작용</td>
+                            <td>버드나무 균형/기울기</td>
+                            <td>빛 교차/합쳐짐</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer">
+                <span>Interactive Visual Parameters Mapping</span>
+                <span>4 / 5</span>
+            </div>
+        </div>
+
+        <!-- Slide 6: 팀 역할 & 연락처 -->
+        <div class="slide-container">
+            <div class="header">
+                <div class="header-title">
+                    <h3>05. Collaboration</h3>
+                    <h1>팀 구성 및 시스템 엔지니어 역할</h1>
+                </div>
+                <div class="header-badge">Contact & Join</div>
+            </div>
+            <div class="content grid-3">
+                <div class="card">
+                    <h4>소리 예술가</h4>
+                    <p><strong>성악 · 가야금 · 플루트</strong></p>
+                    <p>무대의 서사를 이끄는 소리 연주. 실시간 데이터 분석에 반응하는 가창 및 연주 퍼포먼스 담당.</p>
+                </div>
+                <div class="card">
+                    <h4>공연 기획자</h4>
+                    <p><strong>총괄 연출 & 운영</strong></p>
+                    <p>무대 연출 및 씬(Scene) 조율. iPad 오퍼레이터 UI를 통한 무대 큐(Cue) 컨트롤 및 공연 운영 전반.</p>
+                </div>
+                <div class="card">
+                    <h4>파이프라인 개발자</h4>
+                    <p><strong>시스템 & 백엔드 (본인)</strong></p>
+                    <p>우분투 오디오 분석 서버 구축, OSC 통신 파이프라인 제어, 백스테이지 전용 오퍼레이터 UI 개발.</p>
+                </div>
+            </div>
+            <div class="footer">
+                <span>Email: leun95@naver.com | Mobile: 010-2405-6340</span>
+                <span>5 / 5</span>
+            </div>
+        </div>
+
     </div>
 
     <!-- 컨트롤 버튼 -->
     <div class="controls">
-        <button onclick="prevSlide()">이전 슬라이드</button>
-        <button onclick="nextSlide()">다음 슬라이드</button>
-        <button onclick="window.print()" style="background-color: #1f6feb;">PDF로 인쇄/저장</button>
+        <button onclick="prevSlide()">❮ 이전 슬라이드</button>
+        <button onclick="nextSlide()">다음 슬라이드 ❯</button>
+        <button class="btn-print" onclick="window.print()">🖨️ PDF 인쇄/저장</button>
     </div>
 
     <script>
@@ -326,6 +575,15 @@
                 showSlide(currentSlide);
             }
         }
+
+        // 키보드 방향키 제어
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === 'Space') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
     </script>
 </body>
 </html>
