@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>목소리의 형상 - 공연 프로젝트 제안서</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        body {
+            background-color: #0d1117;
+            color: #e6edf3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .slide-container {
+            width: 900px;
+            height: 506px; /* 16:9 비율 */
+            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 40px;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .slide-container.active {
+            display: flex;
+        }
+
+        .header {
+            border-bottom: 2px solid #238636;
+            padding-bottom: 12px;
+        }
+
+        .header h3 {
+            font-size: 14px;
+            color: #2ea043;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            color: #ffffff;
+            margin-top: 4px;
+        }
+
+        .content {
+            flex-grow: 1;
+            margin-top: 24px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .card {
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .card h4 {
+            color: #58a6ff;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .card p, .card li {
+            font-size: 14px;
+            color: #c9d1d9;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            margin-bottom: 6px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #21262d;
+            padding-top: 12px;
+            font-size: 12px;
+            color: #8b949e;
+        }
+
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+        }
+
+        button {
+            background-color: #238636;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: #2ea043;
+        }
+
+        .title-slide {
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title-slide h1 {
+            font-size: 36px;
+            color: #58a6ff;
+            margin-bottom: 12px;
+        }
+
+        .title-slide h2 {
+            font-size: 20px;
+            color: #8b949e;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .contact-box {
+            background: #161b22;
+            padding: 16px 24px;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            display: inline-block;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .controls { display: none; }
+            .slide-container { 
+                display: flex !important; 
+                page-break-after: always; 
+                box-shadow: none;
+                border: 1px solid #ccc;
+                color: #000;
+                background: #fff;
+                margin-bottom: 20px;
+            }
+            .card { background: #f6f8fa; border-color: #d0d7de; }
+            .card h4 { color: #0969da; }
+            .card p, .card li { color: #24292f; }
+            .header h1 { color: #24292f; }
+            .title-slide h1 { color: #0969da; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: 표지 -->
+    <div class="slide-container active title-slide">
+        <h1>목소리의 형상: 국악과 자연의 흐름</h1>
+        <h2>성악, 가야금, 플루트, 그리고 기술이 만나는 융복합 테크아트 공연</h2>
+        <div class="contact-box">
+            <p><strong>제안자:</strong> 시스템 / 파이프라인 개발자</p>
+            <p><strong>이메일:</strong> leun95@naver.com</p>
+            <p><strong>연락처:</strong> 010-2405-6340</p>
+        </div>
+    </div>
+
+    <!-- Slide 2: 기획 의도 -->
+    <div class="slide-container">
+        <div class="header">
+            <h3>01. Overview</h3>
+            <h1>기획 의도 및 공연 서사</h1>
+        </div>
+        <div class="content grid-3">
+            <div class="card">
+                <h4>1장: 소리의 탄생</h4>
+                <p><strong>Static → Energy</strong></p>
+                <br>
+                <p>작은 소리가 물의 입자가 되어 흐름을 형성합니다. 세 연주자의 소리가 각기 다른 온도의 빗줄기가 되어 무대 바닥에 쌓입니다.</p>
+            </div>
+            <div class="card">
+                <h4>2장: 두 흐름의 대화</h4>
+                <p><strong>Voice → Avatar</strong></p>
+                <br>
+                <p>소리가 교차하고 얽히며 징검다리를 거칩니다. 연주 속도(BPM)와 음높이(Pitch)에 따라 빗줄기 밀도와 파동이 실시간 변화합니다.</p>
+            </div>
+            <div class="card">
+                <h4>3장: 공존 (금강)</h4>
+                <p><strong>Harmony</strong></p>
+                <br>
+                <p>비가 그치고 무대 전체가 웅장한 금강 풍경으로 전환됩니다. 강물이 버드나무 사이를 지나 바다로 향하는 장엄한 완성을 그립니다.</p>
+            </div>
+        </div>
+        <div class="footer">
+            <span>TechArt Stage Lab - TESS LAB</span>
+            <span>1 / 3</span>
+        </div>
+    </div>
+
+    <!-- Slide 3: 기술 및 파이프라인 -->
+    <div class="slide-container">
+        <div class="header">
+            <h3>02. Technology</h3>
+            <h1>실시간 오디오 반응형 인터랙션 기술</h1>
+        </div>
+        <div class="content grid-3">
+            <div class="card">
+                <h4>성악 (Voice)</h4>
+                <ul>
+                    <li>• <strong>Pitch:</strong> 빗방울 생성 높이</li>
+                    <li>• <strong>RMS:</strong> 빗방울 크기 제어</li>
+                    <li>• <strong>Vibrato:</strong> 물결의 떨림/파동</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>가야금 (Gayageum)</h4>
+                <ul>
+                    <li>• <strong>Onset:</strong> 빗방울 발생 빈도</li>
+                    <li>• <strong>RMS:</strong> 폭우/가랑비 강우량</li>
+                    <li>• <strong>Spectrum:</strong> 물결 발생 위치</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>플루트 (Flute)</h4>
+                <ul>
+                    <li>• <strong>Breath:</strong> 안개 밀도 연동</li>
+                    <li>• <strong>Pitch:</strong> 바람 이동 방향</li>
+                    <li>• <strong>Sustain:</strong> 물결 지속 시간</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer">
+            <span>Ubuntu & Python Pipeline / TouchDesigner Physics</span>
+            <span>2 / 3</span>
+        </div>
+    </div>
+
+    <!-- Slide 4: 팀 구성 및 역할 -->
+    <div class="slide-container">
+        <div class="header">
+            <h3>03. Team & Synergy</h3>
+            <h1>팀 구성 및 역할 분담</h1>
+        </div>
+        <div class="content grid-3">
+            <div class="card">
+                <h4>소리 예술가</h4>
+                <p><strong>성악 · 가야금 · 플루트</strong></p>
+                <br>
+                <p>서사를 이끌어가는 목소리와 악기 연주로 무대 생명력 부여. 기술과 호흡하는 실시간 가창/연주 수행.</p>
+            </div>
+            <div class="card">
+                <h4>공연 기획자</h4>
+                <p><strong>총괄 연출 & 운영</strong></p>
+                <br>
+                <p>공연 연출, 스토리라인 조율, 큐(Cue) 사인을 통한 무대 제어, 마케팅 및 대관 운영 전반 담당.</p>
+            </div>
+            <div class="card">
+                <h4>파이프라인 개발자</h4>
+                <p><strong>백엔드 & Web UI (본인)</strong></p>
+                <br>
+                <p>Ubuntu 기반 실시간 오디오 분석 파이프라인 구축. 백스테이지 태블릿 제어용 Web Operator UI 개발.</p>
+            </div>
+        </div>
+        <div class="footer">
+            <span>Contact: leun95@naver.com / 010-2405-6340</span>
+            <span>3 / 3</span>
+        </div>
+    </div>
+
+    <!-- 컨트롤 버튼 -->
+    <div class="controls">
+        <button onclick="prevSlide()">이전 슬라이드</button>
+        <button onclick="nextSlide()">다음 슬라이드</button>
+        <button onclick="window.print()" style="background-color: #1f6feb;">PDF로 인쇄/저장</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-container');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+    </script>
+</body>
+</html>
