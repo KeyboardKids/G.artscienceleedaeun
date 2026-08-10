@@ -2,13 +2,13 @@
 라이브 웹 프레젠테이션 (Presentation Link)
 프로젝트에 대한 제안서 및 실시간 인터랙션 기술 발표 자료는 아래 링크에서 확인하실 수 있습니다.
 
-👉 **[http://soundtechnology.com](https://keyboardkids.github.io/Shape.of.Sound/))**
+👉 **[https://keyboardkids.github.io/Shape.of.Sound/](https://keyboardkids.github.io/Shape.of.Sound/))**
 
 ---
 
 ## 📋 프로젝트 개요 (Overview)
 * **공연명:** 목소리의 형상 (Shape of Voice)
-* **장르:** 인터랙티브 미디어아트 / 융복합 공연
+* **장르:** 인터랙티브 미디어아트
 * **핵심 컨셉:** 연주자의 소리(성악, 국악, 클래식)를 실시간 파이썬 오디오 분석 파이프라인으로 추출하여 '비·물·바람'의 시각적 요소로 형상화
 
 ---
